@@ -1,63 +1,110 @@
 const emojis = [
-    "🍁",
-    "🍁",
-    "⭐",
-    "⭐",
-    "🏎️",
-    "🏎️",
-    "🗿",
-    "🗿",
-    "😎",
-    "😎",
-    "👽",
-    "👽",
-    "☂️",
-    "☂️",
-    "🧊",
-    "🧊"
+  "🍁",
+  "⭐",
+  "🏎️",
+  "🗿",
+  "😎",
+  "👽",
+  "☂️",
+  "🧊",
+  "🍋‍🟩",
+  "🌚",
+  "🍁",
+  "⭐",
+  "🏎️",
+  "🗿",
+  "😎",
+  "👽",
+  "☂️",
+  "🧊",
+  "🍋‍🟩",
+  "🌚",
 ];
+
+let timer = 42;
+let intervalo;
+let gameStarted = false;
 let openCards = [];
 
-let shuffleEmojis = emojis.sort(() => (Math.random() > 0.5) ? 2 : -1);
+const game = document.querySelector(".game");
 
-for(let i=0; i < emojis.length; i++){
-    let box = document.createElement("div");
-    box.className = "item";
-    box.innerHTML = shuffleEmojis[i];
-    box.onclick = handleClick;
-    document.querySelector(".game").appendChild(box);
+// embaralhar
+let shuffleEmojis = emojis.sort(() => (Math.random() > 0.5 ? 2 : -1));
+
+// criar cartas
+for (let i = 0; i < emojis.length; i++) {
+  let box = document.createElement("div");
+  box.className = "item";
+  box.innerHTML = shuffleEmojis[i];
+  box.onclick = handleClick;
+  game.appendChild(box);
 }
 
+// clique nas cartas
+function handleClick() {
+  if (!gameStarted) {
+    iniciarTimer();
+    gameStarted = true;
+  }
 
-function handleClick(){
-    if(openCards.length < 2){
-        this.classList.add("boxOpen");
-        openCards.push(this);
-    }
+  if (this.classList.contains("boxOpen") || openCards.length >= 2) {
+    return;
+  }
 
-    if(openCards.length == 2){
-        setTimeout(checkMatch, 500);
-    }
+  this.classList.add("boxOpen");
+  openCards.push(this);
 
-
+  if (openCards.length === 2) {
+    setTimeout(checkMatch, 500);
+  }
 }
 
+// checar pares
+function checkMatch() {
+  if (openCards[0].innerHTML === openCards[1].innerHTML) {
+    openCards[0].classList.add("boxMatch");
+    openCards[1].classList.add("boxMatch");
+  } else {
+    openCards[0].classList.remove("boxOpen");
+    openCards[1].classList.remove("boxOpen");
+  }
 
-function checkMatch(){
-    if(openCards[0].innerHTML === openCards[1].innerHTML)
-        {
-        openCards[0].classList.add("boxMatch");
-        openCards[1].classList.add("boxMatch");
+  openCards = [];
+
+  // vitória
+  if (document.querySelectorAll(".boxMatch").length === emojis.length) {
+    clearInterval(intervalo);
+    alert("Você venceu!");
+  }
+}
+
+// timer
+function iniciarTimer() {
+  intervalo = setInterval(() => {
+    timer--;
+
+    const timerEl = document.getElementById("timer");
+    timerEl.textContent = String(timer).padStart(2, "0");
+
+    // últimos 10 segundos
+    if (timer <= 10) {
+      timerEl.style.color = "red";
     }
-    else{
-        openCards[0].classList.remove("boxOpen");
-        openCards[1].classList.remove("boxOpen");
+
+    // fim de jogo
+    if (timer <= 0) {
+      timer = 0;
+      clearInterval(intervalo);
+      fimDeJogo();
     }
+  }, 1000);
+}
 
-    openCards = [];
+// fim de jogo
+function fimDeJogo() {
+  alert("Tempo esgotado!");
 
-
-    if(document.querySelectorAll(".boxMatch").length === emojis.length){
-        alert("Você venceu!");
-    }
+  document.querySelectorAll(".item").forEach((card) => {
+    card.onclick = null;
+  });
 }
