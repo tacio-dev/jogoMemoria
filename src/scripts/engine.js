@@ -1,24 +1,24 @@
 const emojis = [
   "🐬",
-  "⭐",
+  "🌌",
   "🛸",
-  "🐳",
-  "🚀",
+  "🎒",
+  "💛",
   "👽",
-  "🌠",
+  "👍",
   "🤖",
   "🪐",
-  "🌍",
+  "🌎",
   "🐬",
-  "⭐",
+  "🌌",
   "🛸",
-  "🐳",
-  "🚀",
+  "🎒",
+  "💛",
   "👽",
-  "🌠",
+  "👍",
   "🤖",
   "🪐",
-  "🌍",
+  "🌎",
 ];
 
 let timer = 42;
@@ -78,33 +78,39 @@ function checkMatch() {
   }
 }
 
-// timer
+// função timer
 function iniciarTimer() {
+  const tituloh2 = document.getElementById("titulo");
+  const timerEl = document.getElementById("timer");
+
+  timerEl.textContent = String(timer).padStart(2, "0");
+
   intervalo = setInterval(() => {
     timer--;
 
-    const timerEl = document.getElementById("timer");
     timerEl.textContent = String(timer).padStart(2, "0");
 
-    // últimos 10 segundos
     if (timer <= 10) {
-      timerEl.style.color = "red";
+      timerEl.classList.add("warning");
+      tituloh2.classList.add("warning");
     }
 
-    // fim de jogo
-    if (timer <= 0) {
-      timer = 0;
+    if (timer === 0) {
       clearInterval(intervalo);
-      fimDeJogo();
+
+      requestAnimationFrame(() => {
+        setTimeout(fimDeJogo, 50);
+      });
     }
   }, 1000);
 }
 
-// fim de jogo
+// função fim de jogo
 function fimDeJogo() {
   alert("Tempo esgotado!");
 
   document.querySelectorAll(".item").forEach((card) => {
     card.onclick = null;
   });
+  document.querySelectorAll(".reset");
 }

@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=VT323&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=VT323&display=swap");
+
 body {
   display: flex;
   justify-content: center;
@@ -5,6 +8,14 @@ body {
   min-height: 100vh;
   background: #30235e;
   user-select: none;
+  background-image: url(../images/background/background.png);
+  background-position: center;
+}
+
+.cosmic-cutie img {
+  position: absolute;
+  width: 20%;
+  left: 10rem;
 }
 
 .container {
@@ -15,44 +26,62 @@ body {
   align-items: center;
   gap: 30px;
   background: linear-gradient(
-    325deg,
-    #03001e 0%,
-    #9e38ec 30%,
-    #4438ec 70%,
-    #38d4ec 100%
+    145deg,
+    #12121a,
+    #0d0d14 40%,
+    #0a0a10 60%,
+    #161622
   );
   padding: 40px 60px;
+  border-radius: 25px;
 }
 
-h2 {
-  font-size: 3em;
-  color: white;
+#titulo {
+  font-family: "VT323", monospace;
+  font-size: 2.5em;
+  font-weight: 400;
+  color: rgb(51, 255, 51);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #9c9c9c;
+  padding: 10px 20px 10px 20px;
+  background-color: #0a0a0a;
+  text-shadow:
+    0 0 5px rgba(51, 255, 51, 0.8),
+    0 0 10px rgba(51, 255, 51, 0.6),
+    0 0 20px rgba(51, 255, 51, 0.4);
 }
 
 .reset {
-  margin-top: 100px;
   padding: 15px 20px;
-  width: 100%;
-  color: #000;
-  background-color: #fff;
+  width: 75%;
+  color: #ffffff;
+  background-color: rgb(204, 51, 51);
   border: none;
+  border-radius: 5px;
   font-size: 1.5em;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 600;
+  box-shadow:
+    0px 0px 30px 10px rgba(204, 51, 51, 0.25),
+    0px 0px 2px 3px #0a0a0a;
 }
 
 .reset:focus {
-  color: #4438ec;
-  background-color: #38d4ec;
+  color: #ffffff;
+  background-color: rgb(255, 46, 46);
+  box-shadow:
+    0px 0px 15px 5px rgba(255, 46, 46, 0.9),
+    0px 0px 2px 3px #0a0a0a;
 }
 
 .game {
   width: 430px;
-  height: 430px;
+  height: 540px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -67,24 +96,30 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(33, 23, 47);
+  background: #0a0a0a;
   font-size: 3em;
   transform: rotateY(180deg);
   transition: 0.25s;
+  border-radius: 2px;
+  border: 1px solid;
 }
 
 .item.boxOpen {
   transform: rotateY(0deg);
+  box-shadow: 0px 0px 2px 3px #ffffff;
 }
 
 .item::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: #333333;
+  background: linear-gradient(145deg, #2d3140, #1f2330 50%, #151824);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   transition: 0.25s;
   transform: rotateY(0deg);
   backface-visibility: visible;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 3px #111111;
 }
 
 .boxOpen::after,
@@ -94,7 +129,54 @@ h2 {
 }
 
 #timer {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: #fff;
+  display: inline-block;
+  border: 2px solid;
+  border-radius: 5px;
+  border-color: #9c9c9c;
+  padding: 0 20px 0 20px;
+  background-color: #0a0a0a;
+  font-family: "VT323", monospace;
   font-size: 3em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  color: rgb(51, 255, 51);
+  text-shadow:
+    0 0 5px rgba(51, 255, 51, 0.8),
+    0 0 10px rgba(51, 255, 51, 0.6),
+    0 0 20px rgba(51, 255, 51, 0.4);
+}
+
+#timer.warning,
+#titulo.warning {
+  color: rgb(255, 60, 60);
+  animation: pulse 1s infinite;
+
+  text-shadow:
+    0 0 6px rgba(255, 60, 60, 0.7),
+    0 0 12px rgba(255, 60, 60, 0.5),
+    0 0 20px rgba(255, 60, 60, 0.3);
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow:
+      0 0 6px rgba(255, 60, 60, 0.6),
+      0 0 12px rgba(255, 60, 60, 0.4),
+      0 0 20px rgba(255, 60, 60, 0.2);
+  }
+
+  50% {
+    text-shadow:
+      0 0 10px rgba(255, 60, 60, 1),
+      0 0 20px rgba(255, 60, 60, 0.8),
+      0 0 40px rgba(255, 60, 60, 0.6);
+  }
+
+  100% {
+    text-shadow:
+      0 0 6px rgba(255, 60, 60, 0.6),
+      0 0 12px rgba(255, 60, 60, 0.4),
+      0 0 20px rgba(255, 60, 60, 0.2);
+  }
 }
