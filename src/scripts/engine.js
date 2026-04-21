@@ -80,8 +80,8 @@ function checkMatch() {
 
 // função timer
 function iniciarTimer() {
-  const tituloh2 = document.getElementById("titulo");
   const timerEl = document.getElementById("timer");
+  const visorEl = document.querySelector(".visor");
 
   timerEl.textContent = String(timer).padStart(2, "0");
 
@@ -91,8 +91,7 @@ function iniciarTimer() {
     timerEl.textContent = String(timer).padStart(2, "0");
 
     if (timer <= 10) {
-      timerEl.classList.add("warning");
-      tituloh2.classList.add("warning");
+      visorEl.classList.add("warning");
     }
 
     if (timer === 0) {
