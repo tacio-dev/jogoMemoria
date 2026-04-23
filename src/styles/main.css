@@ -18,7 +18,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   background: linear-gradient(145deg, #2e2a30, #2c2a30, #333238);
   padding: 25px 35px;
 }
@@ -101,56 +101,52 @@ body {
 }
 
 .led {
-  width: 1.5em;
-  height: 1.5em;
-  background-color: #1e2326;
+  width: 1.2em;
+  height: 1.2em;
+  border: 1px solid;
   border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #424242, #111111 75%);
 }
 
 .led.wrong {
-  background-color: red;
+  background: radial-gradient(circle at 30% 30%, #ffc1c1, #ff0303 75%);
   box-shadow:
-    0 0 5px rgba(254, 2, 2, 0.8),
-    0 0 10px rgba(254, 2, 2, 0.6),
-    0 0 20px rgba(254, 2, 2, 0.4);
+    0 0 5px rgba(255, 0, 0, 0.8),
+    0 0 10px rgba(255, 0, 0, 0.6),
+    0 0 20px rgba(255, 0, 0, 0.4);
 }
 
-.reset {
-  padding: 3px 1.12em;
-  color: #ffffff;
-  background: linear-gradient(145deg, #bb1212, #b51100, #bf240e);
-  border: 1px solid;
-  border-radius: 1.5px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  font-family: "Roboto Mono", monospace;
-  font-size: 1.15em;
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.04s ease-in-out;
-}
-
-.reset:focus {
-  transform: translateY(2px);
-
+.led.right {
+  background: radial-gradient(circle at 30% 30%, #d8ffd8, #03ff42 75%);
   box-shadow:
-    inset 2px 2px 5px rgba(0, 0, 0, 0.5),
-    /* afundado */ inset -1px -1px 2px rgba(255, 255, 255, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.6); /* quase sem altura */
+    0 0 5px rgba(0, 255, 0, 0.8),
+    0 0 10px rgba(0, 255, 0, 0.6),
+    0 0 20px rgba(0, 255, 0, 0.4);
 }
 
 .game {
   background: linear-gradient(145deg, #38383d, #252429, #1f1e20);
   border: 1px solid;
   border-radius: 10px;
-  width: 455px;
-  height: 569px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+
+  width: 100%;
+  height: 100%px;
+
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  padding: 16px;
+  gap: 12px;
+
   perspective: 500px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  gap: 10px;
 }
 
 .item {
@@ -195,6 +191,40 @@ body {
 .boxMatch::after {
   transform: rotateY(180deg);
   backface-visibility: hidden;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.reset {
+  height: 2.5em;
+  grid-column: 2 / 4;
+  color: #ffffff;
+  background: linear-gradient(145deg, #d61515, #d81702);
+
+  border: 1px solid #000;
+  border-radius: 2px;
+  box-shadow: 0px 0px 2px 2px #111111;
+
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.12em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.01s ease-in-out;
+}
+
+.reset:active {
+  transform: translateY(1px);
+
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.7),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.2),
+    0px 0px 2px 1px #111111;
 }
 
 /* tablets */

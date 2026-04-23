@@ -25,8 +25,9 @@ let timer = 42;
 let intervalo;
 let gameStarted = false;
 let openCards = [];
+let ajudaUsada = false;
 
-const game = document.querySelector(".game");
+const board = document.querySelector(".board");
 
 // embaralhar
 let shuffleEmojis = emojis.sort(() => (Math.random() > 0.5 ? 2 : -1));
@@ -37,7 +38,7 @@ for (let i = 0; i < emojis.length; i++) {
   box.className = "item";
   box.innerHTML = shuffleEmojis[i];
   box.onclick = handleClick;
-  game.appendChild(box);
+  board.appendChild(box);
 }
 
 // clique nas cartas
@@ -64,8 +65,20 @@ function checkMatch() {
   const ledEl = document.querySelector(".led");
 
   if (openCards[0].innerHTML === openCards[1].innerHTML) {
+    ledEl.classList.add("right");
     openCards[0].classList.add("boxMatch");
     openCards[1].classList.add("boxMatch");
+
+    // vitória
+    if (document.querySelectorAll(".boxMatch").length === emojis.length) {
+      clearInterval(intervalo);
+      alert("Você venceu!");
+      return;
+    }
+
+    setTimeout(() => {
+      ledEl.classList.remove("right");
+    }, 500);
   } else {
     ledEl.classList.add("wrong");
     openCards[0].classList.remove("boxOpen");
@@ -73,16 +86,10 @@ function checkMatch() {
 
     setTimeout(() => {
       ledEl.classList.remove("wrong");
-    }, 800);
+    }, 500);
   }
 
   openCards = [];
-
-  // vitória
-  if (document.querySelectorAll(".boxMatch").length === emojis.length) {
-    clearInterval(intervalo);
-    alert("Você venceu!");
-  }
 }
 
 // função timer
@@ -113,6 +120,8 @@ function iniciarTimer() {
 
 // função fim de jogo
 function fimDeJogo() {
+  const ledEl = document.querySelector(".led");
+  ledEl.classList.add("wrong");
   alert("Tempo esgotado!");
 
   document.querySelectorAll(".item").forEach((card) => {
