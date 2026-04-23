@@ -61,12 +61,19 @@ function handleClick() {
 
 // checar pares
 function checkMatch() {
+  const ledEl = document.querySelector(".led");
+
   if (openCards[0].innerHTML === openCards[1].innerHTML) {
     openCards[0].classList.add("boxMatch");
     openCards[1].classList.add("boxMatch");
   } else {
+    ledEl.classList.add("wrong");
     openCards[0].classList.remove("boxOpen");
     openCards[1].classList.remove("boxOpen");
+
+    setTimeout(() => {
+      ledEl.classList.remove("wrong");
+    }, 800);
   }
 
   openCards = [];
