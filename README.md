@@ -17,7 +17,7 @@ O objetivo foi ir além da proposta inicial, explorando personalização, design
 A proposta foi evoluir um projeto base simples para algo com identidade própria, incorporando elementos visuais, feedback em tempo real e pequenos detalhes que enriquecem a experiência do usuário.
 
 
-As referências implícitas nesse projeto podem parecer... estranhamente específicas. 😉
+As referências implícitas nesse projeto podem parecer... estranhamente específicas. 
 
 -------------------------------------------
 
