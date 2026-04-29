@@ -1,6 +1,6 @@
 const emojis = [
   "🐬",
-  "🌌",
+  "🐁",
   "🛸",
   "🎒",
   "💛",
@@ -10,7 +10,7 @@ const emojis = [
   "🪐",
   "🌎",
   "🐬",
-  "🌌",
+  "🐁",
   "🛸",
   "🎒",
   "💛",
@@ -72,7 +72,9 @@ function checkMatch() {
     // vitória
     if (document.querySelectorAll(".boxMatch").length === emojis.length) {
       clearInterval(intervalo);
-      alert("Você venceu!");
+      alert(
+        "Sucesso! Improvável... Você encontrou a resposta para a vida, o universo e tudo mais. (Os filósofos não ficarão felizes.)",
+      );
       return;
     }
 
@@ -122,7 +124,9 @@ function iniciarTimer() {
 function fimDeJogo() {
   const ledEl = document.querySelector(".led");
   ledEl.classList.add("wrong");
-  alert("Tempo esgotado!");
+  alert(
+    "Tempo esgotado! Lamentável... Mas não entre em pânico! (Na verdade, entre um pouco, a Terra está prestes a ser demolida.)",
+  );
 
   document.querySelectorAll(".item").forEach((card) => {
     card.onclick = null;

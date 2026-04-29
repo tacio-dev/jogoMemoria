@@ -10,7 +10,6 @@ body {
   background-image: url(../images/background/background.png);
   background-position: center;
   background-size: cover;
-
   user-select: none;
 }
 
@@ -49,7 +48,7 @@ body {
   color: rgb(2, 254, 197);
 
   padding: 0.3em 0.5em;
-  border-radius: 15px;
+  border-radius: 10px;
   border: clamp(8px, 1.5vw, 15px) solid transparent;
 
   background:
