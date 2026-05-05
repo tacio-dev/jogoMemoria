@@ -22,131 +22,282 @@ body {
   align-items: stretch;
   gap: clamp(8px, 2vw, 12px);
 
-  padding: clamp(25px, 4vw, 32px) /* top/bottom */ clamp(8px, 3vw, 25px); /* left/right */
+  padding: clamp(25px, 4vw, 25px) /* top/bottom */ clamp(8px, 3vw, 25px); /* left/right */
   margin: 0 auto;
 
   border-radius: 10px;
-  background: linear-gradient(145deg, #444649, #3e3f41, #3a3b3d);
+  background: linear-gradient(145deg, #303233, #2f2f31);
 
   box-sizing: border-box;
 }
 
 .visor {
   width: 100%;
+  height: 13em;
   overflow: hidden;
-
+  line-height: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   font-family: "VT323", monospace;
-  font-size: clamp(2.5rem, 4vw, 4rem);
 
   text-align: center;
   text-transform: uppercase;
-  color: rgb(2, 254, 197);
+  color: hsl(150, 100%, 50%);
 
   padding: 0.3em 0.5em;
   border-radius: 10px;
   border: clamp(8px, 1.5vw, 15px) solid transparent;
 
   background:
-    linear-gradient(#07110f, #0a0e0d) padding-box,
-    linear-gradient(145deg, #131314, #0c0c0c, #121213) border-box;
+    linear-gradient(hsl(150, 25%, 5%)) padding-box,
+    linear-gradient(145deg, #1a1c1d, #1b1c1e) border-box;
 
   box-shadow:
     0 0 0 1px #000,
     inset 0 0 2px 3px #000;
 
   text-shadow:
-    0 0 5px rgba(2, 254, 197, 0.8),
-    0 0 10px rgba(2, 254, 197, 0.6),
-    0 0 20px rgba(2, 254, 197, 0.4);
+    0 0 5px hsla(150, 100%, 50%, 0.8),
+    0 0 10px hsla(150, 100%, 50%, 0.6),
+    0 0 20px hsla(150, 100%, 50%, 0.4);
 }
 
 .visor.warning {
-  color: rgb(255, 3, 86);
+  color: hsl(45, 100%, 50%);
   animation: pulse 1s infinite;
 
   background:
-    linear-gradient(#0e0305, #0e0305) padding-box,
-    linear-gradient(145deg, #0f0d0e, #191516, #19171a) border-box;
+    linear-gradient(hsl(45, 25%, 5%)) padding-box,
+    linear-gradient(145deg, #1a1c1d, #1b1c1e) border-box;
 
   text-shadow:
-    0 0 6px rgba(255, 3, 86, 0.7),
-    0 0 12px rgba(255, 3, 86, 0.5),
-    0 0 20px rgba(255, 3, 86, 0.3);
+    0 0 6px hsla(45, 100%, 50%, 0.7),
+    0 0 12px hsla(45, 100%, 50%, 0.5),
+    0 0 20px hsla(45, 100%, 50%, 0.3);
 }
 
 @keyframes pulse {
   0% {
     text-shadow:
-      0 0 6px rgba(255, 3, 86, 0.6),
-      0 0 12px rgba(255, 3, 86, 0.4),
-      0 0 20px rgba(255, 3, 86, 0.2);
+      0 0 6px hsla(45, 100%, 50%, 0.6),
+      0 0 12px hsla(45, 100%, 50%, 0.4),
+      0 0 20px hsla(45, 100%, 50%, 0.2);
   }
 
   50% {
     text-shadow:
-      0 0 10px rgba(255, 3, 86, 1),
-      0 0 20px rgba(255, 3, 86, 0.8),
-      0 0 40px rgba(255, 3, 86, 0.6);
+      0 0 10px hsla(45, 100%, 50%, 1),
+      0 0 20px hsla(45, 100%, 50%, 0.8),
+      0 0 40px hsla(45, 100%, 50%, 0.6);
   }
 
   100% {
     text-shadow:
-      0 0 6px rgba(255, 3, 86, 0.6),
-      0 0 12px rgba(255, 3, 86, 0.4),
-      0 0 20px rgba(255, 3, 86, 0.2);
+      0 0 6px hsla(45, 100%, 50%, 0.6),
+      0 0 12px hsla(45, 100%, 50%, 0.4),
+      0 0 20px hsla(45, 100%, 50%, 0.2);
   }
 }
 
 #titulo {
   font-family: inherit;
   font-weight: 400;
-  font-size: 0.9em;
-  height: 1em;
+  font-size: clamp(3rem, 2.5vw, 3.7rem);
 }
 
 #timer {
   font-family: inherit;
   font-weight: 400;
-  font-size: 1.6em;
+  font-size: clamp(6rem, 6vw, 6.5rem);
   display: flex;
   justify-content: center;
-  height: 1em;
+}
+
+.visor.game-over {
+  animation: none;
+  color: hsl(345, 100%, 50%);
+  background:
+    linear-gradient(hsl(345, 25%, 5%)) padding-box,
+    linear-gradient(145deg, #1a1c1d, #1b1c1e) border-box;
+  text-shadow:
+    0 0 6px hsla(345, 100%, 50%, 0.7),
+    0 0 12px hsla(345, 100%, 50%, 0.5),
+    0 0 20px hsla(345, 100%, 50%, 0.3);
+}
+
+.visor.game-over #titulo {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  font-size: clamp(4rem, 4vw, 4rem);
+  animation: typing 2.5s steps(40, end) forwards;
+}
+
+.visor.game-over #timer {
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(1.7rem, 3vw, 2rem);
+}
+
+.visor.game-over #timer .line1 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 1.4em;
+  animation: typing 3s steps(30, end) forwards;
+  animation-delay: 4s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.visor.game-over #timer .line2 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 1.2em;
+  animation: typing 2.5s steps(40, end) forwards;
+  animation-delay: 7s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.visor.game-over #timer .line3 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 0.6em;
+  opacity: 0;
+  animation: typing 3s steps(50, end) forwards;
+  animation-delay: 11s;
+  animation-fill-mode: forwards;
+}
+
+.visor.victory {
+  animation: none;
+  color: hsl(150, 100%, 50%);
+  background:
+    linear-gradient(hsl(150, 23%, 5%)) padding-box,
+    linear-gradient(145deg, #1a1c1d, #1b1c1e) border-box;
+  text-shadow:
+    0 0 6px hsla(150, 100%, 50%, 0.7),
+    0 0 12px hsla(150, 100%, 50%, 0.5),
+    0 0 20px hsla(150, 100%, 50%, 0.3);
+}
+
+.visor.victory #titulo {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  font-size: clamp(4rem, 4vw, 4rem);
+  animation: typing 2.5s steps(40, end) forwards;
+}
+
+.visor.victory #timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(2rem, 3vw, 2rem);
+}
+
+.visor.victory .line1 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 1.5em;
+  animation: typing 2.5s steps(30, end) forwards;
+  animation-delay: 3s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.visor.victory .line2 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  line-break: auto;
+  font-size: 1em;
+  animation: typing 2.5s steps(40, end) forwards;
+  animation-delay: 6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.visor.victory .line3 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 1em;
+  opacity: 0;
+  animation: typing 2.5s steps(50, end) forwards;
+  animation-delay: 8s;
+  animation-fill-mode: forwards;
+}
+
+.visor.victory .line4 {
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 0.6em;
+  opacity: 0;
+  animation: typing 3s steps(50, end) forwards;
+  animation-delay: 13s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
 }
 
 .led {
   align-self: center;
-  width: clamp(12px, 2.5vw, 18px);
-  height: clamp(12px, 2.5vw, 18px);
+  width: clamp(12px, 2.4vw, 16px);
+  height: clamp(12px, 2.4vw, 16px);
   border: 1px solid;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #424242, #111111 75%);
 }
 
 .led.wrong {
-  background: radial-gradient(circle at 30% 30%, #ffc1c1, #ff0303 75%);
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsl(0, 100%, 85%),
+    rgb(255, 0, 0) 75%
+  );
   box-shadow:
-    0 0 6px rgba(255, 0, 0, 0.8),
-    0 0 12px rgba(255, 0, 0, 0.6),
-    0 0 20px rgba(255, 0, 0, 0.4);
+    0 0 6px hsla(0, 100%, 50%, 0.8),
+    0 0 12px hsla(0, 100%, 50%, 0.6),
+    0 0 20px hsla(0, 100%, 50%, 0.4);
 }
 
 .led.right {
-  background: radial-gradient(circle at 30% 30%, #d8ffd8, #03ff42 75%);
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsl(120, 100%, 85%),
+    hsl(120, 100%, 50%) 75%
+  );
   box-shadow:
-    0 0 5px rgba(0, 255, 0, 0.8),
-    0 0 10px rgba(0, 255, 0, 0.6),
-    0 0 20px rgba(0, 255, 0, 0.4);
+    0 0 5px hsla(120, 100%, 50%, 0.8),
+    0 0 10px hsla(120, 100%, 50%, 0.6),
+    0 0 20px hsla(120, 100%, 50%, 0.4);
 }
 
 .game {
   width: 100%;
   max-width: 100%;
-  background: linear-gradient(145deg, #2f3235, #2b2d2e, #26282a);
+  background: linear-gradient(145deg, #202325, #202122);
   border: 1px solid;
   border-radius: 10px;
   display: grid;
@@ -185,15 +336,20 @@ body {
 
 .item.boxMatch {
   transition: 0.15s;
-  box-shadow: 0px 0px 2px 3px #02fec5;
+  box-shadow: 0px 0px 2px 3px hsl(150, 100%, 50%);
+}
+
+.item.boxOpen.game-over {
+  transition: 0.15s;
+  box-shadow: 0px 0px 2px 3px hsl(345, 100%, 50%);
 }
 
 .item::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(195deg, #afadaa, #a9a7a6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(195deg, #d1c8ba, #c2b8a9);
+  border: 1px solid hsla(255, 255, 255, 0.06);
   transition: 0.25s;
   transform: rotateY(0deg);
   backface-visibility: visible;
@@ -217,7 +373,7 @@ body {
   height: clamp(2em, 6vw, 2em);
   grid-column: 2 / 4;
   color: #ffffff;
-  background: linear-gradient(145deg, #b42623, #aa1e1d);
+  background: linear-gradient(145deg, #cc0f12, #c41717);
 
   border: 1px solid #000;
   border-radius: 2px;
@@ -235,15 +391,13 @@ body {
 .reset:active {
   transform: scale(0.99);
 
-  box-shadow:
-    inset 0 1px 1px rgba(0, 0, 0, 0.7),
-    0px 0px 2px 1px #111111;
+  box-shadow: 0px 0px 2px 1.2px #111111;
 }
 
 @media (max-width: 480px) {
   .visor {
+    height: 4.5em;
     font-size: clamp(3.2rem, 8vw, 5.5rem);
-    padding: 0.5em 0.6em;
     border-width: clamp(6px, 1vw, 10px);
   }
 }
